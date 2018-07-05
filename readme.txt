@@ -13,3 +13,6 @@ chmod +x gradlew
 
 gradlew bootJar
 
+
+
+git push origin master
