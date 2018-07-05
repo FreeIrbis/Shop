@@ -12,7 +12,7 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class ShopApplication implements CommandLineRunner {
 
-    @Value("${is.prod}")
+    //@Value("${is.prod}")
     private boolean isProd;
 
 	public static void main(String[] args) {
@@ -26,11 +26,11 @@ public class ShopApplication implements CommandLineRunner {
 
 	@EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent() {
-		if(!isProd) {
+		//if(!isProd) {
 			Browser.browse("http://localhost:8080/test/hello?name=Shop");
-            Browser.browse("http://localhost:8080/hello");
             Browser.browse("http://localhost:8080/login");
-		}
+		    Browser.browse("http://localhost:8080/h2-console/");
+		//}
     }
 
 	@Override
