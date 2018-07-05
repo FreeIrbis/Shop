@@ -20,7 +20,7 @@ public class HelloTestController {
             value = "/hello",
             method = RequestMethod.GET
     )
-    public Hello greeting(@RequestParam(value="name", defaultValue="World") String name) {
+    public Hello hello(@RequestParam(value="name", defaultValue="World") String name) {
         Hello hello = new Hello();
         hello.setName(name);
         return hello;
