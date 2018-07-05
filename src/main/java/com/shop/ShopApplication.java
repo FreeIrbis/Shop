@@ -20,7 +20,7 @@ public class ShopApplication implements CommandLineRunner {
 
 		//Запуск без баннера Spring
 		SpringApplication app = new SpringApplication(ShopApplication.class);
-		app.setBannerMode(Banner.Mode.OFF);
+		//app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
 
