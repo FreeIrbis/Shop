@@ -1,6 +1,7 @@
 package com.shop;
 
 import com.javaquasar.util.desktop.Browser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +11,9 @@ import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 public class ShopApplication implements CommandLineRunner {
+
+    @Value("${is.prod}")
+    private boolean isProd;
 
 	public static void main(String[] args) {
 		//SpringApplication.run(ShopApplication.class, args);
@@ -22,8 +26,10 @@ public class ShopApplication implements CommandLineRunner {
 
 	@EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent() {
-		Browser.browse("http://localhost:8080/test/hello");
-		Browser.browse("http://localhost:8080/test/hello?name=Shop");
+		if(!isProd) {
+			Browser.browse("http://localhost:8080/test/hello");
+			Browser.browse("http://localhost:8080/test/hello?name=Shop");
+		}
     }
 
 	@Override
