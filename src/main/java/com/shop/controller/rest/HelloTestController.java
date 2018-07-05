@@ -1,4 +1,4 @@
-package com.shop.controller;
+package com.shop.controller.rest;
 
 import com.shop.pojo.test.Hello;
 import org.springframework.beans.factory.annotation.Autowired;

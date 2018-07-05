@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 public class TestServiceAspect  {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestServiceAspect.class);
-    @Before("execution(* com.shop.controller.HelloTestController.hello (java.lang.String)) && args(sampleName)")
+    @Before("execution(* com.shop.controller.rest.HelloTestController.hello (java.lang.String)) && args(sampleName)")
     public void beforeSampleCreation(String sampleName) {
         LOGGER.info("A request was issued for a sample name: " + sampleName);
     }
 
-    @Around("execution(* com.shop.controller.HelloTestController.hello (java.lang.String)) && args(sampleName)")
+    @Around("execution(* com.shop.controller.rest.HelloTestController.hello (java.lang.String)) && args(sampleName)")
     public Object aroundSampleCreation(ProceedingJoinPoint proceedingJoinPoint, String sampleName) throws Throwable {
         LOGGER.info("A request was issued for a sample name: " + sampleName);
         sampleName = sampleName + "!";
