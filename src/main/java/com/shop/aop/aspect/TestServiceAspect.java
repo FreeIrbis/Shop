@@ -1,5 +1,6 @@
 package com.shop.aop.aspect;
 
+import com.shop.pojo.test.Hello;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,9 +22,10 @@ public class TestServiceAspect  {
     @Around("execution(* com.shop.controller.HelloTestController.hello (java.lang.String)) && args(sampleName)")
     public Object aroundSampleCreation(ProceedingJoinPoint proceedingJoinPoint, String sampleName) throws Throwable {
         LOGGER.info("A request was issued for a sample name: " + sampleName);
-        sampleName = sampleName+"!";
-//        Sample sample = (Sample) proceedingJoinPoint.proceed(new Object[] {sampleName});
-//        sample.setName(sample.getName().toUpperCase());
-        return null;
+        sampleName = sampleName + "!";
+        Hello sample = (Hello) proceedingJoinPoint.proceed(new Object[] {sampleName});
+        sample.setName(sample.getName().toUpperCase());
+        return sample;
     }
+
 }
