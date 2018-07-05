@@ -1,6 +1,7 @@
 package com.shop;
 
 import com.javaquasar.util.desktop.Browser;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,12 @@ import org.springframework.context.event.EventListener;
 public class ShopApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShopApplication.class, args);
+		//SpringApplication.run(ShopApplication.class, args);
+
+		//Запуск без баннера Spring
+		SpringApplication app = new SpringApplication(ShopApplication.class);
+		app.setBannerMode(Banner.Mode.OFF);
+		app.run(args);
 	}
 
 	@EventListener({ApplicationReadyEvent.class})
