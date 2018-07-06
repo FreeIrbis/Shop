@@ -17,6 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <!--/*@thymesVar id="persons" type="com.shop.db.entity.Person"*/-->
                 <tr th:each="person : ${persons}">
                     <td th:text="${person?.id}">1</td>
                     <td th:text="${person?.name}">Doe</td>
