@@ -61,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("p").roles("ADMIN");
 
         //User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build();
-
     }
 
     @SuppressWarnings("deprecation")
