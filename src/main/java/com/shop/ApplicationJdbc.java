@@ -1,8 +1,8 @@
 package com.shop;
 
 import com.javaquasar.util.desktop.Browser;
-import com.shop.db.entity.Person;
-import com.shop.db.jdbc.PersonJbdcDao;
+import com.shop.repository.entity.Person;
+import com.shop.repository.jdbc.PersonJbdcDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

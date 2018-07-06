@@ -9,3 +9,11 @@ h2{
 footer{
     margin-top:60px;
 }
+
+.error-message {
+    color: #a94442;
+}
+
+.error-message:first-letter {
+    text-transform: capitalize;
+}

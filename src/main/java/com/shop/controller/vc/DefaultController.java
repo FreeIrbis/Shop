@@ -1,6 +1,7 @@
 package com.shop.controller.vc;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -13,7 +14,7 @@ public class DefaultController {
 
     @GetMapping("/")
     public String home1() {
-        return "/home";
+        return "/index";
     }
 
     @GetMapping("/home")
@@ -39,6 +40,16 @@ public class DefaultController {
     @GetMapping("/login")
     public String login() {
         return "/login";
+    }
+
+    @GetMapping("/login2")
+    public String login2(Model model) {
+        return "/login_2";
+    }
+
+    @GetMapping("/registration")
+    public String registration() {
+        return "/registration";
     }
 
     @GetMapping("/403")

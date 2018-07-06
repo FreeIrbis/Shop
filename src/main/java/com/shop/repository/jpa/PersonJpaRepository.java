@@ -1,6 +1,6 @@
-package com.shop.db.jpa;
+package com.shop.repository.jpa;
 
-import com.shop.db.entity.Person;
+import com.shop.repository.entity.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

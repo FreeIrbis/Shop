@@ -1,6 +1,6 @@
-package com.shop.db.jdbc;
+package com.shop.repository.jdbc;
 
-import com.shop.db.entity.Person;
+import com.shop.repository.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
