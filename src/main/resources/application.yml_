@@ -1,0 +1,116 @@
+# ===============================
+# TOMCAT
+# ===============================
+server:
+  port: 8080
+#  address: 127.0.0.1
+#  error:
+#    whitelabel:
+#      enabled: false
+#  tomcat:
+#    accesslog:
+#      enabled: true
+
+spring:
+
+  # ===============================
+  # SMTP EMAIL
+  # ===============================
+#spring.mail.host = smtp.mailhost.com
+#spring.mail.username = mailUser
+#spring.mail.password = mailPass
+#spring.mail.port = 587
+#spring.mail.properties.mail.smtp.auth = true
+#spring.mail.properties.mail.smtp.starttls.enable = true
+
+  # ===============================
+  # MAIL configurations
+  # ===============================
+#mail:
+#default-encoding: UTF-8
+#host: localhost
+#jndi-name:
+#username: username
+#password: secret
+#port: 2525
+#properties:
+#mail:
+#debug: false
+#smtp:
+#debug: false
+#auth: true
+#starttls: true
+#protocol: smtp
+#test-connection: false
+
+  # ===============================
+  # MySQl
+  # ===============================
+  datasource:
+    url: jdbc:mysql://localhost:3306/SHOP
+    username: admin
+    username: admin
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+  # ===============================
+  # H2
+  # ===============================
+  datasource:
+    url: jdbc:h2:~/shop
+    username: admin
+    username: admin
+    driver-class-name: org.h2.Driver
+
+  # ===============================
+  # JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: create
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    database-platform: H2
+
+  # ===============================
+  # Thymeleaf configurations
+  # ===============================
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+#    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+#    mode: HTML5
+
+  # ===============================
+  # Banner
+  # ===============================
+  banner:
+    charset: UTF-8
+    location: classpath:banner.txt
+
+
+#spring.datasource.hikari.connection-timeout=1000
+#For MySQL need more
+#spring.datasource.hikari.maximum-pool-size=1
+
+# ===============================
+# LOG
+# ===============================
+logging:
+  file: ./shop_application.log
+  max-size: 100MB
+#  level:
+#    root: debug
+
+
+
+# ===============================
+# Custom
+# ===============================
+#is.prod = false;
+
