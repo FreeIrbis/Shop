@@ -1,5 +1,6 @@
 package com.shop.repository.entity;
 
+import com.shop.repository.entity.base.DomainObject;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,11 +10,7 @@ import java.util.Collection;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends DomainObject {
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
@@ -51,14 +48,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
