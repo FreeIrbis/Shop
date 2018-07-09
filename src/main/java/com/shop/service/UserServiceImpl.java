@@ -3,6 +3,7 @@ package com.shop.service;
 import com.shop.controller.dto.UserRegistrationDto;
 import com.shop.repository.entity.Role;
 import com.shop.repository.entity.User;
+import com.shop.repository.jpa.RoleRepository;
 import com.shop.repository.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -53,7 +57,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("USER")));
+        user.setRoles(Arrays.asList(getRole("USER")));
         return userRepository.save(user);
     }
 
@@ -61,5 +65,9 @@ public class UserServiceImpl implements UserService {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
+    }
+
+    private Role getRole(String name) {
+        return roleRepository.findByName(name);
     }
 }
