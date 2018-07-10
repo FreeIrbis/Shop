@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
-
 public class UserDetailsImpl implements UserDetails {
 
     private Collection<SimpleGrantedAuthority> authorities;
@@ -63,7 +62,6 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
 
 }
 

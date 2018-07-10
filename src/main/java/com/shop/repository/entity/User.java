@@ -22,7 +22,6 @@ public class User extends DomainObject {
     private String lastName;
     private String email;
 
-    @Transient
     private String password;
     private String encryptedPassword;
     private Boolean enabled = true;
@@ -97,6 +96,7 @@ public class User extends DomainObject {
     }
 
     public Boolean getEnabled() {
+
         return enabled;
     }
 
@@ -110,6 +110,10 @@ public class User extends DomainObject {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Integer getFailedLoginAttempts() {
+        return failedLoginAttempts;
     }
 
     public void setFailedLoginAttempts(Integer failedLoginAttempts) {
