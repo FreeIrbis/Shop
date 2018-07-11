@@ -1,3 +1,10 @@
+login               password    role
+
+super@gmail.com     password    ROLE_ADMIN ROLE_MANAGER ROLE_USER
+admin@gmail.com     admin       ROLE_ADMIN
+manager@gmail.com   manager     ROLE_MANAGER
+user@gmail.com      1           ROLE_USER
+
 How to run ap
 
 gradle bootRun
@@ -24,3 +31,13 @@ For bonus points, use git config --edit --global and insert:
 [core]
     askpass =
 To disable the OpenSSH credentials popup too.
+
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Java
+email = java.quasar@gmail.com
+[http]
+        sslVerify = false
+[core]
+    askpass =
