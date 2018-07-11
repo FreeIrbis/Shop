@@ -5,6 +5,7 @@ admin@gmail.com     admin       ROLE_ADMIN
 manager@gmail.com   manager     ROLE_MANAGER
 user@gmail.com      1           ROLE_USER
 
+------------------------------------------
 How to run ap
 
 gradle bootRun
@@ -21,7 +22,7 @@ chmod +x gradlew
 gradlew bootJar
 
 
-
+------------------------------------------
 git push origin master
 
 OK I discovered that you need to either AVOID checking the "Git Credential Manager" checkbox during the Git for Windows installer, or (after installation) run bash shell as Administrator and use git config --edit --system to remove the helper = manager line so that it is no longer registered as a credential helper.
