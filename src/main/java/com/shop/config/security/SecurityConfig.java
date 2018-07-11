@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+//import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/registration**",
                         "/forgot-password**",
                         "/reset-password**",
-                        "/products"
+                        "/products/"
                         /*, "/public/**", "/favicon.ico", "/resources/**", "/static/**", "/h2-console/**"*/)
                     .permitAll()
                 .antMatchers(
@@ -66,14 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**")
                     .permitAll()
                 .antMatchers(
-                        "/user/**",
-                        "/product/show/")
+                        "/user/**")
                     .hasAnyRole("USER")
                 .antMatchers(
-                        "/admin/**",
-                        "/product/show/",
-                        "/product/edit/",
-                        "/product/delete/")
+                        "/product/*", "/admin/**"
+                        )
                     .hasAnyRole("ADMIN")
                     //.hasAuthority("ADMIN")
                 //.anyRequest().authenticated()
