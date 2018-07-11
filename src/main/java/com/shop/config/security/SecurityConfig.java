@@ -55,7 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/test/**",
                         "/registration**",
                         "/forgot-password**",
-                        "/reset-password**"/*, "/public/**", "/favicon.ico", "/resources/**", "/static/**", "/h2-console/**"*/)
+                        "/reset-password**",
+                        "/products"
+                        /*, "/public/**", "/favicon.ico", "/resources/**", "/static/**", "/h2-console/**"*/)
                     .permitAll()
                 .antMatchers(
                         "/js/**",
@@ -63,9 +65,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/img/**",
                         "/webjars/**")
                     .permitAll()
-                .antMatchers("/user/**")
+                .antMatchers(
+                        "/user/**",
+                        "/product/show/")
                     .hasAnyRole("USER")
-                .antMatchers("/admin/**")
+                .antMatchers(
+                        "/admin/**",
+                        "/product/show/",
+                        "/product/edit/",
+                        "/product/delete/")
                     .hasAnyRole("ADMIN")
                     //.hasAuthority("ADMIN")
                 //.anyRequest().authenticated()
