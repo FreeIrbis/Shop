@@ -49,7 +49,6 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	// Allows us to relax the strict HTML syntax checking rules for Thymeleaf templates
 	compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
-//	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.2.RELEASE'
 //	compile("org.springframework.boot:spring-boot-starter-freemarker")
 	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7'
 
