@@ -14,7 +14,7 @@ public class DefaultController {
 
     @GetMapping("/")
     public String home1() {
-        return "/index";
+        return "/home";
     }
 
     @GetMapping("index")
