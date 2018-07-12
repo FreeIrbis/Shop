@@ -22,6 +22,11 @@ public class DefaultController {
         return "/index";
     }
 
+    @GetMapping("welcome")
+    public String welcome() {
+        return "/welcome";
+    }
+
     @GetMapping("/home")
     public String home() {
         return "/home";

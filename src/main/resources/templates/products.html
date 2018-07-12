@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
-    <title>Spring Framework Guru</title>
+    <title>Shop</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -25,23 +25,25 @@
                 <th>Product Id</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th sec:authorize="hasAnyRole('USER','ADMIN')">View</th>
-                <th sec:authorize="hasRole('ADMIN')">Edit</th>
-                <th sec:authorize="hasRole('ADMIN')">Delete</th>
+                <th sec:authorize="hasAnyRole('USER','ADMIN','MANAGER')">View</th>
+                <th sec:authorize="hasAnyRole('ADMIN','MANAGER')">Edit</th>
+                <th sec:authorize="hasAnyRole('ADMIN','MANAGER')">Delete</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}"><a href="/product/${product.id}">Id</a></td>
                 <td th:text="${product.productId}">Product Id</td>
                 <td th:text="${product.description}">descirption</td>
-                <td th:text="${product.price}">price</td>
-                <td sec:authorize="hasAnyRole('USER','ADMIN')"><a th:href="${'/product/show/' + product.id}">View</a></td>
-                <td sec:authorize="hasRole('ADMIN')"><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
-                <td sec:authorize="hasRole('ADMIN')"><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
+                <td th:text="${product.price}">12.65</td>
+                <td sec:authorize="hasAnyRole('USER','ADMIN','MANAGER')"><a th:href="${'/product/show/' + product.id}">View</a></td>
+                <td sec:authorize="hasAnyRole('ADMIN','MANAGER')"><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
+                <td sec:authorize="hasAnyRole('ADMIN','MANAGER')"><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
             </tr>
         </table>
 
     </div>
 </div>
+
+<div th:replace="fragments/footer :: footer"/>
 
 </body>
 </html>

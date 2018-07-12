@@ -49,14 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(
                         "/",
-                        "/hello",
                         "/home",
                         "/welcome",
                         "/test/**",
                         "/registration**",
                         "/forgot-password**",
                         "/reset-password**",
-                        "/products/"
+                        "/products/",
+                        "/product/show/*"
                         /*, "/public/**", "/favicon.ico", "/resources/**", "/static/**", "/h2-console/**"*/)
                     .permitAll()
                 .antMatchers(
@@ -69,9 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user/**")
                     .hasAnyRole("USER")
                 .antMatchers(
-                        "/product/*", "/admin/**"
+                        "/admin/**"
                         )
                     .hasAnyRole("ADMIN")
+                .antMatchers(
+                        "/product/**")
+                    .hasAnyRole("ADMIN", "MANAGER")
                     //.hasAuthority("ADMIN")
                 //.anyRequest().authenticated()
                 .and()

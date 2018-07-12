@@ -29,7 +29,7 @@ public class ShopApplication implements CommandLineRunner {
 		//if(!isProd) {
 			//Browser.browse("http://localhost:8080/test/hello?name=Shop");
             Browser.browse("http://localhost:8080/login");
-		    Browser.browse("http://localhost:8080/h2-console/");
+		    //Browser.browse("http://localhost:8080/h2-console/");
 		//}
     }
 
