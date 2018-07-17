@@ -1,7 +1,7 @@
 package com.shop.controller.dto;
 
 import com.shop.constraint.FieldMatch;
-
+import com.shop.config.security.ValidReCaptcha;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.AssertTrue;
@@ -17,6 +17,10 @@ public class UserRegistrationDto {
 
     @NotEmpty
     private String lastName;
+
+    @NotEmpty
+    @ValidReCaptcha
+    private String reCaptchaResponse;
 
     @NotEmpty
     private String password;
@@ -89,6 +93,14 @@ public class UserRegistrationDto {
 
     public void setTerms(Boolean terms) {
         this.terms = terms;
+    }
+
+    public String getReCaptchaResponse() {
+        return reCaptchaResponse;
+    }
+
+    public void setReCaptchaResponse(String reCaptchaResponse) {
+        this.reCaptchaResponse = reCaptchaResponse;
     }
 
 }

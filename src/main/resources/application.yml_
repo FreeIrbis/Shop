@@ -114,3 +114,25 @@ logging:
 # ===============================
 #is.prod = false;
 
+
+
+# =============================================
+# = Google Recaptcha configurations
+# = https://www.google.com/recaptcha/admin#list
+# =============================================
+google:
+  recaptcha:
+    url: https://www.google.com/recaptcha/api/siteverify
+    key: 6LfxoWQUAAAAAOSqn_vWgFRPkIsn_dIWgSuoXUcA
+    secret: 6LfxoWQUAAAAAFncIsxhN95MIlY-nyR1lzAX3U8F
+
+
+# =============================================
+# = Logging configurations
+# =============================================
+logging:
+  level:
+    root: WARN
+    com.memorynotfound: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO

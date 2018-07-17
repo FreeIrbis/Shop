@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <title>Registration</title>
 </head>
 <body>
@@ -108,7 +110,7 @@
                     <button type="submit" class="btn btn-success">Register</button>
                     <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
                 </div>
-
+                <div class="g-recaptcha" data-sitekey="6LfxoWQUAAAAAOSqn_vWgFRPkIsn_dIWgSuoXUcA"></div>
             </form>
         </div>
     </div>
