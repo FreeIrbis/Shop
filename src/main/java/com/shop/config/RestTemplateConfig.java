@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.config;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

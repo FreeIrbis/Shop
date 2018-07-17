@@ -1,5 +1,7 @@
-package com.shop.config.security;
+package com.shop.service;
 
+import com.shop.pojo.captcha.ReCaptchaResponse;
+import com.shop.config.security.captcha.CaptchaSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,12 @@ public class ReCaptchaService {
                 reCaptchaResponse,
                 request.getRemoteAddr()
         ));
-
+        log.info("verifyUri: {}", verifyUri);
         try {
             ReCaptchaResponse response = restTemplate.getForObject(verifyUri, ReCaptchaResponse.class);
-            return response.isSuccess();
+            boolean isSuccess = response.isSuccess();
+            log.info("isSuccess: {}", isSuccess);
+            return isSuccess;
         } catch (Exception ignored){
             log.error("", ignored);
             // ignore when google services are not available

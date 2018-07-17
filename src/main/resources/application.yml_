@@ -46,11 +46,11 @@ spring:
   # ===============================
   # MySQl
   # ===============================
-  datasource:
-    url: jdbc:mysql://localhost:3306/SHOP
-    username: admin
-    username: admin
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/SHOP
+#    username: admin
+#    username: admin
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
 
   # ===============================
   # H2
@@ -66,7 +66,8 @@ spring:
   # ===============================
   jpa:
     show-sql: true
-    hibernate.ddl-auto: create
+    properties:hibernate:format_sql: true
+    hibernate.ddl-auto: create-drop
     naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     database-platform: H2
 
@@ -75,14 +76,12 @@ spring:
   # ===============================
   thymeleaf:
     cache: false
-    check-template: true
-    check-template-location: true
-#    content-type: text/html
-    enabled: true
-    encoding: UTF-8
-    mode: HTML
-    prefix: classpath:/templates/
-    suffix: .html
+#    check-template: true
+#    check-template-location: true
+#    enabled: true
+#    encoding: UTF-8
+#    prefix: classpath:/templates/
+#    suffix: .html
     mode: LEGACYHTML5
 #    mode: HTML5
 
@@ -131,8 +130,19 @@ google:
 # = Logging configurations
 # =============================================
 logging:
-  level:
-    root: WARN
-    com.memorynotfound: DEBUG
-    org.springframework.web: INFO
-    org.springframework.security: INFO
+#  level:
+#    root: WARN
+#    com.memorynotfound: DEBUG
+#
+#    org.springframework:
+#      web: INFO
+#      security: INFO
+#      jdbc.core:
+#        JdbcTemplate: DEBUG
+#        StatementCreatorUtils: TRACE
+
+    org.hibernate:
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
+
+#log4j.logger.org.hibernate.type: trace

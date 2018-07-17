@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.pojo.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

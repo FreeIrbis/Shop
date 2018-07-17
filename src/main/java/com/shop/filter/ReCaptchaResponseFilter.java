@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.filter;
 
 import org.springframework.stereotype.Component;
 

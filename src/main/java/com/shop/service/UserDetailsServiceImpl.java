@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.service;
 
 import com.shop.repository.entity.User;
 import com.shop.service.UserService;

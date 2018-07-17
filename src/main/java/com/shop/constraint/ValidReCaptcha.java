@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.constraint;
 
 import javax.validation.Payload;
 import javax.validation.Constraint;

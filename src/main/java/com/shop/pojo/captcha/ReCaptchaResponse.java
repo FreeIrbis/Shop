@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.pojo.captcha;
 
 import com.fasterxml.jackson.annotation.*;
 

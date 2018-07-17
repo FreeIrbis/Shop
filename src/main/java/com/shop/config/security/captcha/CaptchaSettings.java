@@ -1,4 +1,4 @@
-package com.shop.config.security;
+package com.shop.config.security.captcha;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
