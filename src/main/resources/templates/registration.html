@@ -106,11 +106,11 @@
                        th:each="error : ${#fields.errors('terms')}"
                        th:text="${error}">Validation error</p>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LfxoWQUAAAAAOSqn_vWgFRPkIsn_dIWgSuoXUcA"></div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Register</button>
                     <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LfxoWQUAAAAAOSqn_vWgFRPkIsn_dIWgSuoXUcA"></div>
             </form>
         </div>
     </div>
