@@ -4,7 +4,7 @@ import com.shop.repository.entity.Product;
 import com.shop.repository.entity.Role;
 import com.shop.repository.entity.User;
 import com.shop.repository.jpa.ProductRepository;
-import com.shop.service.UserService;
+import com.shop.service.api.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

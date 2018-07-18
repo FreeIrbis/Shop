@@ -1,6 +1,5 @@
 package com.shop.pojo;
 
-import java.util.List;
 import java.util.Map;
 
 public class Mail {
@@ -8,10 +7,28 @@ public class Mail {
     private String from;
     private String to;
     private String subject;
+    private String pathToTamplate;
     private Map<String, Object> model;
 
     public Mail() {
+    }
 
+    public Mail(String to, String subject) {
+        this.to = to;
+        this.subject = subject;
+    }
+
+    public Mail(String to, String subject, Map<String, Object> model) {
+        this.to = to;
+        this.subject = subject;
+        this.model = model;
+    }
+
+    public Mail(String from, String to, String subject, Map<String, Object> model) {
+        this.from = from;
+        this.to = to;
+        this.subject = subject;
+        this.model = model;
     }
 
     public String getFrom() {
@@ -36,6 +53,14 @@ public class Mail {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public String getPathToTamplate() {
+        return pathToTamplate;
+    }
+
+    public void setPathToTamplate(String pathToTamplate) {
+        this.pathToTamplate = pathToTamplate;
     }
 
     public Map<String, Object> getModel() {

@@ -1,7 +1,7 @@
 package com.shop.service;
 
 import com.shop.repository.entity.User;
-import com.shop.service.UserService;
+import com.shop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;

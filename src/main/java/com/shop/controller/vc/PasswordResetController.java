@@ -4,7 +4,7 @@ import com.shop.controller.dto.PasswordResetDto;
 import com.shop.repository.entity.PasswordResetToken;
 import com.shop.repository.entity.User;
 import com.shop.repository.jpa.PasswordResetTokenRepository;
-import com.shop.service.UserService;
+import com.shop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;

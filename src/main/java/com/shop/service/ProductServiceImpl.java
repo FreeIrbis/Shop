@@ -2,6 +2,7 @@ package com.shop.service;
 
 import com.shop.repository.entity.Product;
 import com.shop.repository.jpa.ProductRepository;
+import com.shop.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

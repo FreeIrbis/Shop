@@ -2,7 +2,7 @@ package com.shop.controller.vc;
 
 import com.shop.controller.dto.UserRegistrationDto;
 import com.shop.repository.entity.User;
-import com.shop.service.UserService;
+import com.shop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
