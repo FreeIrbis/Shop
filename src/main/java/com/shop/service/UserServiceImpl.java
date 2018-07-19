@@ -7,6 +7,8 @@ import com.shop.repository.entity.User;
 import com.shop.repository.jpa.RoleRepository;
 import com.shop.repository.jpa.UserRepository;
 import com.shop.service.api.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private RoleRepository roleRepository;
@@ -61,7 +65,12 @@ public class UserServiceImpl implements UserService {
     public User save(UserRegistrationDto registration){
         User user = convertUserRegistrationDtoToUser(registration);
         User userSave = userRepository.save(user);
-        emailService.sendEmail(createRegistermail(userSave));
+        try {
+            emailService.sendEmail(createRegistermail(userSave));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
         return userSave;
     }
 

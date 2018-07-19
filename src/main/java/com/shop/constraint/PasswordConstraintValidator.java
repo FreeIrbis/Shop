@@ -54,7 +54,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
                 new CharacterRule(EnglishCharacterData.Digit, 1),
 
                 // at least one symbol (special character)
-                new CharacterRule(EnglishCharacterData.Special, 1),
+                //new CharacterRule(EnglishCharacterData.Special, 1),
 
                 // no whitespace
                 new WhitespaceRule(),
@@ -70,7 +70,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         }
 
         List<String> messages = validator.getMessages(result);
-        String messageTemplate = messages.stream().collect(Collectors.joining(","));
+        String messageTemplate = messages.stream().collect(Collectors.joining(" "));
         context.buildConstraintViolationWithTemplate(messageTemplate)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();

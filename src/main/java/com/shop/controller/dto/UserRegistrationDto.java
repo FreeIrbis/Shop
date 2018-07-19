@@ -1,6 +1,7 @@
 package com.shop.controller.dto;
 
 import com.shop.constraint.FieldMatch;
+import com.shop.constraint.ValidPassword;
 import com.shop.constraint.ValidReCaptcha;
 
 import javax.validation.constraints.Email;
@@ -24,6 +25,7 @@ public class UserRegistrationDto {
     private String reCaptchaResponse;
 
     @NotEmpty
+    @ValidPassword
     private String password;
 
     @NotEmpty
