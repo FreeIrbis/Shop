@@ -24,7 +24,7 @@ public class User extends DomainObject {
 
     private String password;
     private String encryptedPassword;
-    private Boolean enabled = true;
+    private Boolean enabled = false;
 
     private String confirmationToken;
 
