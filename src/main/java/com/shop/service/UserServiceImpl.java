@@ -17,10 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,6 +59,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByConfirmationToken(String confirmationToken){
+        return userRepository.findByConfirmationToken(confirmationToken);
+    };
+
+    @Override
     public User save(UserRegistrationDto registration){
         User user = convertUserRegistrationDtoToUser(registration);
         User userSave = userRepository.save(user);
@@ -91,6 +93,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registration.getEmail());
         user.setPassword(registration.getPassword());
         user.setEncryptedPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setConfirmationToken(UUID.randomUUID().toString());
         user.setRoles(Arrays.asList(getRole("ROLE_USER")));
         return user;
     }
@@ -106,7 +109,7 @@ public class UserServiceImpl implements UserService {
         model.put("firstName", user.getFirstName());
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
-        model.put("confirmUrl", "https://memorynotfound.com");
+        model.put("confirmUrl", "http://localhost:8080/confirm?token="+user.getConfirmationToken());
         mail.setModel(model);
 
         return mail;

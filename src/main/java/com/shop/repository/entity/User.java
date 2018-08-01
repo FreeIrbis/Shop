@@ -26,6 +26,8 @@ public class User extends DomainObject {
     private String encryptedPassword;
     private Boolean enabled = true;
 
+    private String confirmationToken;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -102,6 +104,14 @@ public class User extends DomainObject {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 
     public Collection<Role> getRoles() {

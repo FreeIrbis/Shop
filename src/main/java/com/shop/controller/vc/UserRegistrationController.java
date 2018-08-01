@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -46,6 +44,21 @@ public class UserRegistrationController {
 
         userService.save(userDto);
         return "redirect:/registration?success";
+    }
+
+    @RequestMapping(value="/confirm", method = RequestMethod.GET)
+    public ModelAndView showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
+
+        User user = userService.findByConfirmationToken(token);
+
+        if (user == null) { // No token found in DB
+            modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
+        } else { // Token found
+            modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+        }
+
+        modelAndView.setViewName("confirm");
+        return modelAndView;
     }
 
 }
