@@ -27,9 +27,9 @@ public class ShopApplication implements CommandLineRunner {
 	@EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent() {
 		//if(!isProd) {
-			//Browser.browse("http://localhost:8080/test/hello?name=Shop");
-            Browser.browse("http://localhost:8080/login");
-		    //Browser.browse("http://localhost:8080/h2-console/");
+			//Browser.browse("https://localhost:8080/test/hello?name=Shop");
+            Browser.browse("https://localhost:8080/login");
+		    //Browser.browse("https://localhost:8080/h2-console/");
 		//}
     }
 
