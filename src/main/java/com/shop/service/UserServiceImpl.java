@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
         model.put("firstName", user.getFirstName());
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
-        model.put("confirmUrl", "http://localhost:8080/confirm?token="+user.getConfirmationToken());
+        model.put("confirmUrl", "http://localhost:8080/confirm?token=" + user.getConfirmationToken());
         mail.setModel(model);
 
         return mail;

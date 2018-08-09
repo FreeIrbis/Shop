@@ -56,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/forgot-password**",
                         "/reset-password**",
                         "/products/",
-                        "/product/show/*"
+                        "/product/show/*",
+                        "/confirm"
                         /*, "/public/**", "/favicon.ico", "/resources/**", "/static/**", "/h2-console/**"*/)
                     .permitAll()
                 .antMatchers(

@@ -16,32 +16,13 @@ spring:
   # ===============================
   # SMTP EMAIL
   # ===============================
-#spring.mail.host = smtp.mailhost.com
-#spring.mail.username = mailUser
-#spring.mail.password = mailPass
-#spring.mail.port = 587
-#spring.mail.properties.mail.smtp.auth = true
-#spring.mail.properties.mail.smtp.starttls.enable = true
-
-  # ===============================
-  # MAIL configurations
-  # ===============================
-#mail:
-#default-encoding: UTF-8
-#host: localhost
-#jndi-name:
-#username: username
-#password: secret
-#port: 2525
-#properties:
-#mail:
-#debug: false
-#smtp:
-#debug: false
-#auth: true
-#starttls: true
-#protocol: smtp
-#test-connection: false
+    mail:
+        host: smtp.mailhost.com
+        username: mailUser
+        password: mailPass
+        port: 587
+        properties.mail.smtp.auth: true
+        properties.mail.smtp.starttls.enable: true
 
   # ===============================
   # MySQl
