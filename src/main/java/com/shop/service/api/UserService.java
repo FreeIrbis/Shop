@@ -13,5 +13,7 @@ public interface UserService extends UserDetailsService {
 
     void updatePassword(String password, Long userId);
 
-    void confirmEmail(Boolean isEnabled, Long userId);
+    void updateEnabled(Boolean enabled, Long userId);
+
+    void confirmEmail(Boolean emailVerified, Long userId);
 }

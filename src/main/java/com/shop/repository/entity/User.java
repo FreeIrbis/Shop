@@ -24,7 +24,8 @@ public class User extends DomainObject {
 
     private String password;
     private String encryptedPassword;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
+    private Boolean emailVerified = true;
 
     private String confirmationToken;
 
@@ -98,12 +99,19 @@ public class User extends DomainObject {
     }
 
     public Boolean getEnabled() {
-
         return enabled;
     }
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
     }
 
     public String getConfirmationToken() {

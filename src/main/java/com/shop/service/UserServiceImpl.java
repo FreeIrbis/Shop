@@ -53,9 +53,15 @@ public class UserServiceImpl implements UserService {
         userRepository.updatePassword(password, userId);
     }
 
+
     @Override
-    public void confirmEmail(Boolean isEnabled, Long userId) {
-        userRepository.updateEnabled(isEnabled, userId);
+    public void updateEnabled(Boolean enabled, Long userId) {
+        userRepository.updateEnabled(enabled, userId);
+    }
+
+    @Override
+    public void confirmEmail(Boolean emailVerified, Long userId) {
+        userRepository.updateEmailVerified(emailVerified, userId);
     }
 
     @Override
@@ -74,6 +80,7 @@ public class UserServiceImpl implements UserService {
         User userSave = userRepository.save(user);
         try {
             emailService.sendEmail(createRegistermail(userSave));
+            logger.info("email was sended");
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
