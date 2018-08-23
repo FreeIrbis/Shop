@@ -57,7 +57,13 @@ public class UserRegistrationController {
             modelAndView.addObject("confirmationToken", user.getConfirmationToken());
         }
 
-        modelAndView.setViewName("confirm");
+        modelAndView.setViewName("confirm-account");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/confirmated-mail", method = RequestMethod.POST)
+    public ModelAndView showConfirmationPage(ModelAndView modelAndView) {
+        modelAndView.setViewName("/home");
         return modelAndView;
     }
 
