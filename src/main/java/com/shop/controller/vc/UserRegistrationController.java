@@ -5,6 +5,7 @@ import com.shop.repository.entity.User;
 import com.shop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -43,17 +44,18 @@ public class UserRegistrationController {
         }
 
         userService.save(userDto);
-        return "redirect:/registration?success";
+        //return "redirect:/registration?success";
+        return "redirect:/login?success_registration";
     }
 
+    @Transactional
     @RequestMapping(value="/confirm", method = RequestMethod.GET)
     public ModelAndView showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
-
         User user = userService.findByConfirmationToken(token);
-
         if (user == null) { // No token found in DB
             modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
         } else { // Token found
+            userService.confirmEmail(true, user.getId());
             modelAndView.addObject("confirmationToken", user.getConfirmationToken());
         }
 
