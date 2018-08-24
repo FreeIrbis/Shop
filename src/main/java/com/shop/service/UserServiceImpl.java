@@ -2,8 +2,10 @@ package com.shop.service;
 
 import com.shop.controller.dto.UserRegistrationDto;
 import com.shop.pojo.Mail;
+import com.shop.repository.entity.EmailConfirmationToken;
 import com.shop.repository.entity.Role;
 import com.shop.repository.entity.User;
+import com.shop.repository.jpa.EmailConfirmationTokenRepository;
 import com.shop.repository.jpa.RoleRepository;
 import com.shop.repository.jpa.UserRepository;
 import com.shop.service.api.UserService;
@@ -37,6 +39,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private EmailConfirmationTokenRepository emailConfirmationTokenRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
@@ -60,8 +65,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void confirmEmail(Boolean emailVerified, Long userId) {
-        userRepository.updateEmailVerified(emailVerified, userId);
+    public User confirmEmail(String emailConfirmationToken) {
+        EmailConfirmationToken token = emailConfirmationTokenRepository.findByToken(emailConfirmationToken);
+        User user = token.getUser();
+        if(user != null) {
+            userRepository.updateEmailVerified(true, user.getId());
+            emailConfirmationTokenRepository.deleteByToken(emailConfirmationToken);
+        }
+        return user;
     }
 
     @Override
@@ -70,16 +81,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByConfirmationToken(String confirmationToken){
-        return userRepository.findByConfirmationToken(confirmationToken);
-    };
-
-    @Override
     public User save(UserRegistrationDto registration){
         User user = convertUserRegistrationDtoToUser(registration);
         User userSave = userRepository.save(user);
+        String token = UUID.randomUUID().toString();
+        EmailConfirmationToken emailConfirmationToken = new EmailConfirmationToken(token, userSave);
+        emailConfirmationTokenRepository.save(emailConfirmationToken);
         try {
-            emailService.sendEmail(createRegistermail(userSave));
+            emailService.sendEmail(createRegistermail(userSave, token));
             logger.info("email was sended");
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -105,12 +114,12 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registration.getEmail());
         user.setPassword(registration.getPassword());
         user.setEncryptedPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setConfirmationToken(UUID.randomUUID().toString());
+        //user.setConfirmationToken(UUID.randomUUID().toString());
         user.setRoles(Arrays.asList(getRole("ROLE_USER")));
         return user;
     }
 
-    private Mail createRegistermail(User user) {
+    private Mail createRegistermail(User user, String token) {
         Mail mail = new Mail();
         mail.setFrom("shop@gmail.com");
         mail.setTo(user.getEmail());
@@ -121,7 +130,7 @@ public class UserServiceImpl implements UserService {
         model.put("firstName", user.getFirstName());
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
-        model.put("confirmUrl", "https://localhost:8080/registration/confirm?token=" + user.getConfirmationToken());
+        model.put("confirmUrl", "https://localhost:8080/registration/confirm?token=" + token);
         mail.setModel(model);
 
         return mail;

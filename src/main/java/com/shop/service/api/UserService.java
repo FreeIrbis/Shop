@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
 
     User findByEmail(String email);
-    User findByConfirmationToken(String confirmationToken);
 
     User save(UserRegistrationDto registration);
 
@@ -15,5 +14,6 @@ public interface UserService extends UserDetailsService {
 
     void updateEnabled(Boolean enabled, Long userId);
 
-    void confirmEmail(Boolean emailVerified, Long userId);
+    User confirmEmail(String emailConfirmationToken);
+
 }

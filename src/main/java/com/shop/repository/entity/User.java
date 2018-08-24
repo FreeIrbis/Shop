@@ -25,9 +25,7 @@ public class User extends DomainObject {
     private String password;
     private String encryptedPassword;
     private Boolean enabled = true;
-    private Boolean emailVerified = true;
-
-    private String confirmationToken;
+    private Boolean emailVerified = false;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -112,14 +110,6 @@ public class User extends DomainObject {
 
     public void setEmailVerified(Boolean emailVerified) {
         this.emailVerified = emailVerified;
-    }
-
-    public String getConfirmationToken() {
-        return confirmationToken;
-    }
-
-    public void setConfirmationToken(String confirmationToken) {
-        this.confirmationToken = confirmationToken;
     }
 
     public Collection<Role> getRoles() {

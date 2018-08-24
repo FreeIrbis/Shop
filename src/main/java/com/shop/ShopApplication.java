@@ -16,15 +16,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class ShopApplication implements CommandLineRunner {
 
-    //@Value("${is.prod}")
+    @Value("${is.prod}")
     private boolean isProd;
 
 	public static void main(String[] args) {
 		//SpringApplication.run(ShopApplication.class, args);
 
-		//Запуск без баннера Spring
 		SpringApplication app = new SpringApplication(ShopApplication.class);
-		//app.setBannerMode(Banner.Mode.OFF);
+		//app.setBannerMode(Banner.Mode.OFF); //Запуск без баннера Spring
 		app.addListeners(new ApplicationPidFileWriter(PidContainer.PATH_SHUTDOWN_PID));
 		app.run(args);
 	}
@@ -32,11 +31,11 @@ public class ShopApplication implements CommandLineRunner {
 
 	@EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent() {
-		//if(!isProd) {
+		if(!isProd) {
 			//Browser.browse("https://localhost:8080/test/hello?name=Shop");
             Browser.browse("https://localhost:8080/login");
 		    //Browser.browse("https://localhost:8080/h2-console/");
-		//}
+		}
     }
 
 	@Override

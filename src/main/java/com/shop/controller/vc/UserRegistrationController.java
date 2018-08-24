@@ -51,12 +51,11 @@ public class UserRegistrationController {
     @Transactional
     @RequestMapping(value="/confirm", method = RequestMethod.GET)
     public ModelAndView showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
-        User user = userService.findByConfirmationToken(token);
+        User user = userService.confirmEmail(token);
         if (user == null) { // No token found in DB
             modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
         } else { // Token found
-            userService.confirmEmail(true, user.getId());
-            modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+            //modelAndView.addObject("confirmationToken", user.getConfirmationToken());
         }
 
         modelAndView.setViewName("confirm-account");
