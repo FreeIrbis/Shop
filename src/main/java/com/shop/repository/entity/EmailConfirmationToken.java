@@ -17,7 +17,7 @@ public class EmailConfirmationToken extends DomainObject {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
-
+    private Boolean used = false;
     private Date expiryDate;
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
@@ -55,6 +55,14 @@ public class EmailConfirmationToken extends DomainObject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getUsed() {
+        return used;
+    }
+
+    public void setUsed(Boolean used) {
+        this.used = used;
     }
 
     public Date getExpiryDate() {

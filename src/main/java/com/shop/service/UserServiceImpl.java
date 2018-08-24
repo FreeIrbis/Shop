@@ -65,12 +65,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User confirmEmail(String emailConfirmationToken) {
-        EmailConfirmationToken token = emailConfirmationTokenRepository.findByToken(emailConfirmationToken);
-        User user = token.getUser();
+    public EmailConfirmationToken getEmailConfirmationToken(String token) {
+        EmailConfirmationToken et = emailConfirmationTokenRepository.findByToken(token);
+        logger.info("EmailConfirmationToken is null = " + (et == null));
+        return et;
+    }
+
+    @Override
+    public User confirmEmail(EmailConfirmationToken emailConfirmationToken) {
+        User user = emailConfirmationToken.getUser();
         if(user != null) {
             userRepository.updateEmailVerified(true, user.getId());
-            emailConfirmationTokenRepository.deleteByToken(emailConfirmationToken);
+            emailConfirmationTokenRepository.updateUsed(true, emailConfirmationToken.getId());
         }
         return user;
     }

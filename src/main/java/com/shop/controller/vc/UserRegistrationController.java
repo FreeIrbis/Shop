@@ -1,6 +1,7 @@
 package com.shop.controller.vc;
 
 import com.shop.controller.dto.UserRegistrationDto;
+import com.shop.repository.entity.EmailConfirmationToken;
 import com.shop.repository.entity.User;
 import com.shop.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,14 +52,24 @@ public class UserRegistrationController {
     @Transactional
     @RequestMapping(value="/confirm", method = RequestMethod.GET)
     public ModelAndView showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
-        User user = userService.confirmEmail(token);
-        if (user == null) { // No token found in DB
-            modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
-        } else { // Token found
-            //modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+        EmailConfirmationToken emailConfirmationToken = userService.getEmailConfirmationToken(token);
+
+        if(emailConfirmationToken != null) {
+            if(!emailConfirmationToken.getUsed()) {
+                User user = userService.confirmEmail(emailConfirmationToken);
+                if (user == null) { // No token found in DB
+                    modelAndView.addObject("invalidToken", "Oops!  This is an invalid confirmation link.");
+                } else { // Token found
+                    //TODO modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+                }
+                modelAndView.setViewName("login?success");
+            } else  {
+                modelAndView.setViewName("confirm-account?tokenAlreadyUsed");
+            }
+        } else {
+            //TODO
         }
 
-        modelAndView.setViewName("confirm-account");
         return modelAndView;
     }
 
