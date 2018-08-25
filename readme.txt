@@ -6,6 +6,13 @@ manager@gmail.com   manager     ROLE_MANAGER
 user@gmail.com      1           ROLE_USER
 
 ------------------------------------------
+
+Email verification
+
+https://localhost:8080/registration/confirm?token=email_verification_token
+
+------------------------------------------
+
 How to run ap
 
 gradle bootRun

@@ -26,6 +26,19 @@
         <hr />
         <h4>Confirm Your Password</h4>
 
+        <div th:if="${param.success}">
+            <div class="alert alert-info">
+                Success!!!
+            </div>
+        </div>
+
+
+        <div th:if="${param.tokenAlreadyUsed}">
+            <div class="alert alert-info">
+                Email already is activated.
+            </div>
+        </div>
+
         <div th:if="${successMessage}" class="alert alert-success"
              role="alert" th:text=${successMessage}></div>
 

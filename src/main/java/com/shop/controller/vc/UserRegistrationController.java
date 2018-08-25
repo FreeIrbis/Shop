@@ -51,7 +51,7 @@ public class UserRegistrationController {
 
     @Transactional
     @RequestMapping(value="/confirm", method = RequestMethod.GET)
-    public ModelAndView showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
+    public String showConfirmationPage(ModelAndView modelAndView, @RequestParam("token") String token) {
         EmailConfirmationToken emailConfirmationToken = userService.getEmailConfirmationToken(token);
 
         if(emailConfirmationToken != null) {
@@ -62,15 +62,15 @@ public class UserRegistrationController {
                 } else { // Token found
                     //TODO modelAndView.addObject("confirmationToken", user.getConfirmationToken());
                 }
-                modelAndView.setViewName("login?success");
+                return "redirect:/login?success";
             } else  {
-                modelAndView.setViewName("confirm-account?tokenAlreadyUsed");
+                return "confirm-account?tokenAlreadyUsed";
             }
         } else {
             //TODO
         }
 
-        return modelAndView;
+        return "redirect:/login?success";
     }
 
     @RequestMapping(value="/confirmated-mail", method = RequestMethod.POST)
