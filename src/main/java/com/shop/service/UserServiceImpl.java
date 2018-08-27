@@ -3,9 +3,11 @@ package com.shop.service;
 import com.shop.controller.dto.UserRegistrationDto;
 import com.shop.pojo.Mail;
 import com.shop.repository.entity.EmailConfirmationToken;
+import com.shop.repository.entity.PasswordResetToken;
 import com.shop.repository.entity.Role;
 import com.shop.repository.entity.User;
 import com.shop.repository.jpa.EmailConfirmationTokenRepository;
+import com.shop.repository.jpa.PasswordResetTokenRepository;
 import com.shop.repository.jpa.RoleRepository;
 import com.shop.repository.jpa.UserRepository;
 import com.shop.service.api.UserService;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final static int EXPIRY_PERIOD = 7; //days
+    private final static int RESET_PASSWORD_PERIOD = 30; //days
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -38,6 +41,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PasswordResetTokenRepository tokenRepository;
 
     @Autowired
     private EmailService emailService;
@@ -90,7 +96,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserRegistrationDto registration, HttpServletRequest request){
+    public User save(UserRegistrationDto registration, HttpServletRequest request) {
         User user = convertUserRegistrationDtoToUser(registration);
         User userSave = userRepository.save(user);
         String token = UUID.randomUUID().toString();
@@ -105,6 +111,25 @@ public class UserServiceImpl implements UserService {
         }
 
         return userSave;
+    }
+
+    @Override
+    public User resetPassword(User user, HttpServletRequest request) {
+        PasswordResetToken token = new PasswordResetToken();
+        token.setToken(UUID.randomUUID().toString());
+        token.setUser(user);
+        token.setExpiryDate(RESET_PASSWORD_PERIOD);
+        tokenRepository.save(token);
+
+
+        try {
+            emailService.sendEmail(createResetPasswordMail(user, token.getToken(), request));
+            logger.info("email was sended");
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+
+        return user;
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

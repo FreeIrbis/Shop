@@ -13,6 +13,8 @@ public interface UserService extends UserDetailsService {
 
     User save(UserRegistrationDto registration, HttpServletRequest request);
 
+    User resetPassword(User user, HttpServletRequest request);
+
     void updatePassword(String password, Long userId);
 
     void updateEnabled(Boolean enabled, Long userId);

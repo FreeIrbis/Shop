@@ -25,9 +25,8 @@ import java.util.UUID;
 @RequestMapping("/forgot-password")
 public class PasswordForgotController {
 
-    @Autowired private UserService userService;
-    @Autowired private PasswordResetTokenRepository tokenRepository;
-    @Autowired private EmailService emailService;
+    @Autowired
+    private UserService userService;
 
     @ModelAttribute("forgotPasswordForm")
     public PasswordForgotDto forgotPasswordDto() {
@@ -43,7 +42,6 @@ public class PasswordForgotController {
     public String processForgotPasswordForm(@ModelAttribute("forgotPasswordForm") @Valid PasswordForgotDto form,
                                             BindingResult result,
                                             HttpServletRequest request) {
-
         if (result.hasErrors()){
             return "forgot-password";
         }
@@ -53,27 +51,7 @@ public class PasswordForgotController {
             result.rejectValue("email", null, "We could not find an account for that e-mail address.");
             return "forgot-password";
         }
-
-        PasswordResetToken token = new PasswordResetToken();
-        token.setToken(UUID.randomUUID().toString());
-        token.setUser(user);
-        token.setExpiryDate(30);
-        tokenRepository.save(token);
-
-        Mail mail = new Mail();
-        mail.setFrom("no-reply@memorynotfound.com");
-        mail.setTo(user.getEmail());
-        mail.setSubject("Password reset request");
-
-        Map<String, Object> model = new HashMap<>();
-        model.put("token", token);
-        model.put("user", user);
-        model.put("signature", "https://memorynotfound.com");
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
-        mail.setModel(model);
-        emailService.sendEmail(mail);
-
+        userService.resetPassword(user, request);
         return "redirect:/forgot-password?success";
 
     }
