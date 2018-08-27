@@ -1,15 +1,13 @@
 package com.shop.repository.entity;
 
+import com.shop.repository.entity.base.DomainObject;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
 @Entity
-public class PasswordResetToken {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class PasswordResetToken extends DomainObject {
 
     @Column(nullable = false, unique = true)
     private String token;
@@ -20,14 +18,6 @@ public class PasswordResetToken {
 
     @Column(nullable = false)
     private Date expiryDate;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getToken() {
         return token;

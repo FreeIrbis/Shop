@@ -69,8 +69,10 @@ public class EmailConfirmationToken extends DomainObject {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryDate(int days){
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DAY_OF_YEAR, days);
+        this.expiryDate = now.getTime();
     }
 }
 

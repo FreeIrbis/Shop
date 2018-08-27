@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final static int EXPIRY_PERIOD = 7; //days
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -92,6 +94,7 @@ public class UserServiceImpl implements UserService {
         User userSave = userRepository.save(user);
         String token = UUID.randomUUID().toString();
         EmailConfirmationToken emailConfirmationToken = new EmailConfirmationToken(token, userSave);
+        emailConfirmationToken.setExpiryDate(EXPIRY_PERIOD);
         emailConfirmationTokenRepository.save(emailConfirmationToken);
         try {
             emailService.sendEmail(createRegistermail(userSave, token));
@@ -126,6 +129,23 @@ public class UserServiceImpl implements UserService {
     }
 
     private Mail createRegistermail(User user, String token) {
+        Mail mail = new Mail();
+        mail.setFrom("shop@gmail.com");
+        mail.setTo(user.getEmail());
+        mail.setSubject("Shop registration");
+        mail.setPathToTamplate("email/email-confirm-registration");
+
+        Map model = new HashMap();
+        model.put("firstName", user.getFirstName());
+        model.put("lastName", user.getLastName());
+        model.put("signature", "www.shop...");
+        model.put("confirmUrl", "https://localhost:8080/registration/confirm?token=" + token);
+        mail.setModel(model);
+
+        return mail;
+    }
+
+    private Mail createResetPasswordMail(User user, String token) {
         Mail mail = new Mail();
         mail.setFrom("shop@gmail.com");
         mail.setTo(user.getEmail());
