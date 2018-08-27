@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -33,7 +34,7 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result){
+                                      BindingResult result, HttpServletRequest request){
 
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null){
@@ -44,7 +45,7 @@ public class UserRegistrationController {
             return "registration";
         }
 
-        userService.save(userDto);
+        userService.save(userDto, request);
         //return "redirect:/registration?success";
         return "redirect:/login?success_registration";
     }

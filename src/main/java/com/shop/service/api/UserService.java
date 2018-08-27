@@ -5,11 +5,13 @@ import com.shop.repository.entity.EmailConfirmationToken;
 import com.shop.repository.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface UserService extends UserDetailsService {
 
     User findByEmail(String email);
 
-    User save(UserRegistrationDto registration);
+    User save(UserRegistrationDto registration, HttpServletRequest request);
 
     void updatePassword(String password, Long userId);
 

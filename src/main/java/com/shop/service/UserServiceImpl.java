@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserRegistrationDto registration){
+    public User save(UserRegistrationDto registration, HttpServletRequest request){
         User user = convertUserRegistrationDtoToUser(registration);
         User userSave = userRepository.save(user);
         String token = UUID.randomUUID().toString();
@@ -97,7 +98,7 @@ public class UserServiceImpl implements UserService {
         emailConfirmationToken.setExpiryDate(EXPIRY_PERIOD);
         emailConfirmationTokenRepository.save(emailConfirmationToken);
         try {
-            emailService.sendEmail(createRegistermail(userSave, token));
+            emailService.sendEmail(createRegistermail(userSave, token, request));
             logger.info("email was sended");
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -128,7 +129,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    private Mail createRegistermail(User user, String token) {
+    private Mail createRegistermail(User user, String token, HttpServletRequest request) {
         Mail mail = new Mail();
         mail.setFrom("shop@gmail.com");
         mail.setTo(user.getEmail());
@@ -139,26 +140,33 @@ public class UserServiceImpl implements UserService {
         model.put("firstName", user.getFirstName());
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
-        model.put("confirmUrl", "https://localhost:8080/registration/confirm?token=" + token);
+        String url = getBaseUrl(request);
+        model.put("confirmUrl", url + "/registration/confirm?token=" + token);
         mail.setModel(model);
 
         return mail;
     }
 
-    private Mail createResetPasswordMail(User user, String token) {
+    private Mail createResetPasswordMail(User user, String token, HttpServletRequest request) {
         Mail mail = new Mail();
         mail.setFrom("shop@gmail.com");
         mail.setTo(user.getEmail());
-        mail.setSubject("Shop registration");
-        mail.setPathToTamplate("email/email-confirm-registration");
+        mail.setSubject("Reset Password");
+        mail.setPathToTamplate("email/email-reset-password");
 
         Map model = new HashMap();
         model.put("firstName", user.getFirstName());
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
-        model.put("confirmUrl", "https://localhost:8080/registration/confirm?token=" + token);
+
+        String url = getBaseUrl(request);
+        model.put("resetUrl", url + "/reset-password?token=" + token);
         mail.setModel(model);
 
         return mail;
+    }
+
+    private String getBaseUrl(HttpServletRequest request) {
+       return  request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
     }
 }
