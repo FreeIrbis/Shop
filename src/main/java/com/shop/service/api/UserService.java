@@ -15,6 +15,8 @@ public interface UserService extends UserDetailsService {
 
     User resetPassword(User user, HttpServletRequest request);
 
+    User updateUser(User user);
+
     void updatePassword(String password, Long userId);
 
     void updateEnabled(Boolean enabled, Long userId);

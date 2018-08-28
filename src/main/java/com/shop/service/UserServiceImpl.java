@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
     public void updatePassword(String password, Long userId) {
         userRepository.updatePassword(password, userId);
     }
