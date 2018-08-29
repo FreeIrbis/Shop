@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final static int EXPIRY_PERIOD = 7; //days
-    private final static int RESET_PASSWORD_PERIOD = 30; //days
+    private final static int RESET_PASSWORD_PERIOD = 30; //minutes
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -189,8 +189,8 @@ public class UserServiceImpl implements UserService {
         model.put("lastName", user.getLastName());
         model.put("signature", "www.shop...");
 
-        String url = getBaseUrl(request);
-        model.put("resetUrl", url + "/reset-password?token=" + token);
+        String baseUrl = getBaseUrl(request);
+        model.put("resetUrl", baseUrl + "/reset-password?token=" + token);
         mail.setModel(model);
 
         return mail;

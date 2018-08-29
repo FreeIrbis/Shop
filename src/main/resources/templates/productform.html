@@ -3,11 +3,11 @@
 <head>
     <title>Spring Framework Guru</title>
     <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:replace="fragments/header :: header"/>
 
     <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
@@ -47,6 +47,6 @@
 
     </div>
 </div>
-
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(
                         "/",
+                        "/actuator/**",
                         "/home",
                         "/welcome",
                         "/test/**",

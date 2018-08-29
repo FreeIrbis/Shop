@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
     <title>Shop</title>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:replace="fragments/header :: header"/>
 
     <div th:if="${not #lists.isEmpty(products)}">
         <form th:action="@{/logout}" method="post">
