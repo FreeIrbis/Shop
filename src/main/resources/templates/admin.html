@@ -14,11 +14,15 @@
         <h1>Admin page (Spring Security protected)</h1>
 
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <!--<form th:action="@{/logout}" method="post">-->
+            <!--<input type="submit" value="Sign Out"/>-->
+        <!--</form>-->
 
     </div>
+    <div class="form-group">
+        <input type="file" class="form-control-file border" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 
 </div>
 
