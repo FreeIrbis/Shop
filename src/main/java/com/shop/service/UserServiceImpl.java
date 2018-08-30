@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     private EmailConfirmationTokenRepository emailConfirmationTokenRepository;
 
     @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){

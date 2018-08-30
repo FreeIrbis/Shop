@@ -6,8 +6,11 @@ import com.shop.repository.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface UserService extends UserDetailsService {
+
+    List<User> getAll();
 
     User findByEmail(String email);
 
