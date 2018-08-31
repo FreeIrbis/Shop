@@ -12,7 +12,6 @@
 
     <div class="starter-template">
         <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <p th:text="#{home.welcome}">Welcome to our grocery store!</p>
         <p th:text="#{helloworld}">Welcome to our grocery store!</p>
         <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
         <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
@@ -22,8 +21,9 @@
     </div>
 </div>
 <!--<div th:insert="fragments/test :: copy"></div>-->
-<div th:replace="fragments/test :: copy"></div>
+<!--<div th:replace="fragments/test :: copy"></div>-->
 <!--<div th:include="fragments/test :: copy"></div>-->
 <!--<div th:replace="fragments/footer :: footer"/>-->
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>
