@@ -53,3 +53,5 @@ email = java.quasar@gmail.com
 keytool -genkey -alias selfsigned_localhost_sslserver -keyalg RSA -keysize 2048 -validity 3650 -keypass SHOP_KEY -storepass SHOP_STORE -keystore ssl-server.jks
 
 curl -k -X POST https://localhost:8080/actuator/shutdown
+
+https://habr.com/post/350862/
