@@ -10,5 +10,4 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-
 }

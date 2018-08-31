@@ -53,6 +53,15 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         mug.setPrice(new BigDecimal("11.95"));
         productRepository.save(mug);
 
+        for(int i = 0; i < 50; i++) {
+            Product test = new Product();
+            test.setDescription("Test product");
+            test.setImageUrl("https://springframework.guru/wp-content/uploads/2015/04/spring_framework_guru_coffee_mug-r11e7694903c348e1a667dfd2f1474d95_x7j54_8byvr_512.jpg");
+            test.setProductId("168639393495335947" + i);
+            test.setPrice(new BigDecimal("1" + i + "1.95"));
+            productRepository.save(test);
+        }
+
         logger.info("Saved Mug - id:" + mug.getId());
     }
 
