@@ -32,8 +32,6 @@ public class ProductController {
     public ModelAndView list(@RequestParam("pageSize") Optional<Integer> pageSize,
                        @RequestParam("page") Optional<Integer> page,
                        Model model){
-
-
         // Evaluate page size. If requested parameter is null, return initial
         // page size
         int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
