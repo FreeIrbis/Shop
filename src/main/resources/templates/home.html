@@ -1,4 +1,3 @@
-<spring:message code=""/>
 <!DOCTYPE HTML>
 <html th:lang="${#locale.language}"
       xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -26,11 +25,18 @@
                 <hr/>
                 <!-- Dropdown for selecting language -->
                 <div class="dropdown">
-                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span th:text="#{app.lang.title}"/></button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="?lang=en"><span th:text="#{app.lang.english}"/></a>
-                        <a class="dropdown-item" href="?lang=ru"><span th:text="#{app.lang.ru}"/></a>
+                    <button class="btn btn-danger dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        <span th:text="#{app.lang.title}"/>
+                    </button>
+                    <div class="dropdown-menu"
+                         aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" th:href="@{'?lang=en'}"><span th:text="#{app.lang.english}"/></a>
+                        <a class="dropdown-item" th:href="@{'?lang=ru'}"><span th:text="#{app.lang.ru}"/></a>
                     </div>
                 </div>
 
