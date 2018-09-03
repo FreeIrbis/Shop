@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html th:lang="${#locale.language}"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Shop home</title>
     <div th:replace="fragments/header :: header-css"/>
@@ -12,7 +11,9 @@
 
     <div class="starter-template">
         <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-        <p th:text="#{helloworld}">Welcome to our grocery store!</p>
+        <span data-sec-authorize="isAuthenticated()">
+            <p th:text="#{helloworld(${#httpServletRequest.remoteUser})}">Welcome to our grocery store!</p>
+        </span>
         <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
         <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
         <h2>3. Visit <a th:href="@{/products}">Products</a></h2>
@@ -21,9 +22,7 @@
     </div>
 </div>
 <!--<div th:insert="fragments/test :: copy"></div>-->
-<!--<div th:replace="fragments/test :: copy"></div>-->
-<!--<div th:include="fragments/test :: copy"></div>-->
-<!--<div th:replace="fragments/footer :: footer"/>-->
 <div th:replace="fragments/footer :: footer"/>
+<!--<div th:include="fragments/test :: copy"></div>-->
 </body>
 </html>
