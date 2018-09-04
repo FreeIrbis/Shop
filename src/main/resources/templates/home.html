@@ -20,30 +20,24 @@
         <h2>4. Visit <a th:href="@{/about}">Normal page</a></h2>
         <h2>5. Visit <a th:href="@{/hello}">Hello</a></h2>
 
-        <div role="main" class="container">
-            <div class="jumbotron">
-                <hr/>
-                <!-- Dropdown for selecting language -->
-                <div class="dropdown">
-                    <button class="btn btn-danger dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                        <span th:text="#{app.lang.title}"/>
-                    </button>
-                    <div class="dropdown-menu"
-                         aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{'?lang=en'}"><span th:text="#{app.lang.english}"/></a>
-                        <a class="dropdown-item" th:href="@{'?lang=ru'}"><span th:text="#{app.lang.ru}"/></a>
-                    </div>
-                </div>
 
+        <div class="dropdown">
+            <button class="btn btn-danger dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                <span th:text="#{app.lang.title}"/>
+            </button>
+            <div class="dropdown-menu"
+                 aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" th:href="@{'?lang=en'}"><span th:text="#{app.lang.english}"/></a>
+                <a class="dropdown-item" th:href="@{'?lang=ru'}"><span th:text="#{app.lang.ru}"/></a>
             </div>
         </div>
 
-        <select id="locales">
+        <!--<select id="locales">
             <option value=""></option>
             <option value="en" th:text="#{app.lang.english}"></option>
             <option value="de" th:text="#{app.lang.ru}"></option>
@@ -56,7 +50,7 @@
             <a class="list-group-item" href="?lang=ru">
                 <b>Stackoverflow</b>
             </a>
-        </div>
+        </div>-->
 
     </div>
 </div>
