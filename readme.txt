@@ -17,8 +17,14 @@ How to run ap
 
 gradle bootRun
 
-http://localhost:8080/test/hello
-http://localhost:8080/test/hello?name=Shop
+https://localhost:8080/test/hello
+https://localhost:8080/test/hello?name=Shop
+
+redirect from http
+server.port.http=8081
+to https
+server.port=8080
+
 
 ------------------------------------------
 How to build jar
