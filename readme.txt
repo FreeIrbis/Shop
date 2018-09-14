@@ -1,3 +1,5 @@
+heroku
+
 login               password    role
 
 super@gmail.com     password    ROLE_ADMIN ROLE_MANAGER ROLE_USER
